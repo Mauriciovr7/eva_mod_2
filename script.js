@@ -49,46 +49,43 @@ function addToDOM() {
   palabraAleatoria.innerHTML = palabra // variable global
   score_id.innerHTML = score // puntaje del juego
 }
-addToDOM()
+addToDOM() //invocando a la funcion addToDom
 
-// funcion updateScore
+// funcion updateScore que suma el puntaje si acierta 
 function updateScore() {
   score++
 }
 
 // inicio del juego
 input.addEventListener("keyup", function (ev) {
-  if (seguir_jugando) {
-    if (ev.keyCode == 13) {  // evento input
-      if (input.value == palabra) {
-        updateScore()
-        segundos += 3
-      } else {
-        console.log(input.value)
-      }
-      input.value = ''
-      addToDOM()
-    } else {
-    }
+  if (seguir_jugando) { // condicion para seguir jugando
+    if (ev.keyCode == 13) {  // evento del teclado para el input al presionar el enter 
+      if (input.value == palabra) { // condicion si palabra ingresada es igual a aleatoria
+        updateScore() //se invoca funcion para el puntaje 
+        segundos += 3 // se suman tres segundo al tiempo restante 
+      } 
+      input.value = '' //para limpiar el input
+      addToDOM() // invocar a la funcion para que arroje otra palabra aleatoria
+    } 
   }
 })
 
 // manipulación del tiempo
-const timeInterval = setInterval(function () {
-  segundos--
-  timeSpan_id.innerHTML = `${segundos}seg`
+const timeInterval = setInterval(function () { //funcion que sirve para contar el tiempo usando la palabra reservada setInterval
+  segundos--  //disminuir segundos de uno en uno
+  timeSpan_id.innerHTML = `${segundos}seg` // se escriben en el html/Dom usando backsticks
 
-  if (segundos == 0) {
-    clearInterval(timeInterval)
-    gameOver()
+  if (segundos == 0) { // si se acaba el tiempo o llega a cero
+    clearInterval(timeInterval) // se pide detener la funcion del tiempo usando la palabra reservada clearInterval
+    gameOver() //se invoca la funcion para terminar el juego
   }
-}, 1000)
+}, 1000) //corresponde a 1 segundo
 
-// funcion gameOver
-function gameOver() {
-  seguir_jugando = false
+// funcion gameOver se termina el juego
+function gameOver() { 
+  seguir_jugando = false // para prohibir continuar jugando
   end_game_container.innerHTML = `
   <h1>Tiempo excedido</h1>
   <p>puntaje final de la partida: ${score}</p>
-  <button onclick="location.reload()">Volvé a empezar</button>`
+  <button onclick="location.reload()">Volvé a empezar</button>` //se insertan nuevas etiquetas al html para el puntaje y un boton que reinicia el juego, tambien con backstick.
 }
