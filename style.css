@@ -1,0 +1,15 @@
+body {
+  background-image: url(./luces-movimiento.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+  background: rgb(161, 217, 231);
+  opacity: 80%;
+  text-align: center;
+  width: 50%;
+  margin: 10% 25%;
+  padding: 2rem;
+  border-radius: 5%;
+}
