@@ -1,6 +1,6 @@
 // evaluación M02 C09
 
-const palabra = [
+const words = [
   'californication',
   'plataforma5',
   'black',
@@ -21,15 +21,23 @@ const palabra = [
   'funky',
   'chili'
 ]
-const randomWord = document.querySelector("#randomWord")
-const text = document.querySelector("#text") // input
-const timeSpan = document.querySelector("#timeSpan")
-const score = document.querySelector("#score")
+const palabraAleatoria = document.querySelector("#randomWord")
+const text_id = document.querySelector("#text") // input
+const timeSpan_id = document.querySelector("#timeSpan")
+const score_id = document.querySelector("#score")
 const end_game_container = document.querySelector("#end-game-container")
 
 let i = 10
 let j = 1
-let tiempo = 10000
+let tiempo = 10000 // 10 segundos
+
+// funcion randomWords
+function randomWords() {
+  palabraAleatoria.value = words[Math.floor(Math.random() * words.length)]
+  console.log(palabraAleatoria.value)
+palabraAleatoria.textContent = palabraAleatoria.value
+}
+randomWords()
 
 // funcion actualizarTiempo
 
@@ -44,26 +52,22 @@ function gameOver() {
 // funcion updateScore
 
 // funcion addToDOM (llama a randomWords y agrega al DOM)
-// funcion randomWords
-function random() {
-  randomWord.value = palabra[Math.floor(Math.random() * palabra.length)]
-  console.log(randomWord.value)
-  randomWord.textContent = randomWord.value
-}
-random()
 
 // manipulación del tiempo
-setInterval(function () {
+
+const probando = setInterval(function () {
   setInterval(function () {
     console.log('tiempo excedido')
     gameOver()
-  }, tiempo)
-  i--
+  }, tiempo) //10 seguntos
+  i--  // desminuyendo 1 seg
   timeSpan.textContent = i
   if (i == 0) {
-    clearInterval(timeInterval)
+    clearInterval(probando)
   }
 }, 1000)
+
+
 
 // funcion updateScore **************************************
 text.addEventListener("keyup", function (ev) {
