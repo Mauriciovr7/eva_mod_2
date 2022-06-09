@@ -1,5 +1,6 @@
 // evaluación M02 C09
 
+// array de palabras
 const words = [
   'californication',
   'plataforma5',
@@ -21,7 +22,8 @@ const words = [
   'funky',
   'chili'
 ]
-// etiquetas HTML
+
+// variables de etiquetas HTML
 const palabraAleatoria = document.querySelector("#randomWord")
 const input = document.querySelector("#text") // input
 const timeSpan_id = document.querySelector("#timeSpan")
@@ -30,35 +32,31 @@ const end_game_container = document.querySelector("#end-game-container")
 
 // variables globales
 let segundos = 10 // segundos restantes
-let score = 0 // 
+let score = 0 // record
 let palabra; // palabra por adivinar
-
-let tiempo = 10000 // 10 segundos
 
 let seguir_jugando = true
 
-// funcion randomWords
+// funcion randomWords que elige una plabra al azar dentro del array words
 function randomWords() {
   const palabraAzar = words[Math.floor(Math.random() * words.length)]
   return palabraAzar
 }
 
+// función para escribir en el DOM
 function addToDOM() {
   palabra = randomWords() // palabraAzar
   palabraAleatoria.innerHTML = palabra // variable global
-  // segundos
-  score_id.innerHTML = score
+  score_id.innerHTML = score // puntaje del juego
 }
 addToDOM()
 
-// funcion updateScore **************************************
-
+// funcion updateScore
 function updateScore() {
   score++
 }
 
 // inicio del juego
-
 input.addEventListener("keyup", function (ev) {
   if (seguir_jugando) {
     if (ev.keyCode == 13) {  // evento input
@@ -75,7 +73,6 @@ input.addEventListener("keyup", function (ev) {
   }
 })
 
-
 // manipulación del tiempo
 const timeInterval = setInterval(function () {
   segundos--
@@ -86,10 +83,6 @@ const timeInterval = setInterval(function () {
     gameOver()
   }
 }, 1000)
-
-// funcion actualizarTiempo
-
-
 
 // funcion gameOver
 function gameOver() {
