@@ -35,6 +35,8 @@ let palabra; // palabra por adivinar
 
 let tiempo = 10000 // 10 segundos
 
+let seguir_jugando = true
+
 // funcion randomWords
 function randomWords() {
   const palabraAzar = words[Math.floor(Math.random() * words.length)]
@@ -49,69 +51,51 @@ function addToDOM() {
 }
 addToDOM()
 
-// inicio del juego
 // funcion updateScore **************************************
+
+function updateScore() {
+  score++
+}
+
+// inicio del juego
+
 input.addEventListener("keyup", function (ev) {
-  if (ev.keyCode == 13) {  // evento input
-    if (input.value == palabra) {
-      
-      alert('match')
-      
-      //i = 10
-      // tiempo = 10000
-      // console.log(i)
-      score++ // score
-      segundos += 3
-      // random()
-      // return
+  if (seguir_jugando) {
+    if (ev.keyCode == 13) {  // evento input
+      if (input.value == palabra) {
+        updateScore()
+        segundos += 3
+      } else {
+        console.log(input.value)
+      }
+      input.value = ''
+      addToDOM()
     } else {
-      console.log(input.value)
-      alert('erró')
-            
     }
-    input.value = ''
-    addToDOM()
-  } else {
-    //i--
-  }  
+  }
 })
 
 
 // manipulación del tiempo
-const probando = setInterval(function () {
+const timeInterval = setInterval(function () {
   segundos--
   timeSpan_id.innerHTML = `${segundos}seg`
 
-  if(segundos == 0){
-    alert('Usted perdio')
-    clearInterval(probando)
-  }
-  // i--
-  // se ejecuta cada 1 segundo
-}, 1000)
-/*
-
-
-const probando = setInterval(function () {
-  setInterval(function () {
-    console.log('tiempo excedido')
+  if (segundos == 0) {
+    clearInterval(timeInterval)
     gameOver()
-  }, tiempo) //10 seguntos
-  i--  // desminuyendo 1 seg
-  timeSpan.textContent = i
-  if (i == 0) {
-    clearInterval(probando)
   }
 }, 1000)
-*/
+
 // funcion actualizarTiempo
 
 
 
 // funcion gameOver
 function gameOver() {
+  seguir_jugando = false
   end_game_container.innerHTML = `
   <h1>Tiempo excedido</h1>
-  <p>puntaje final de la partida: ${j}</p>
+  <p>puntaje final de la partida: ${score}</p>
   <button onclick="location.reload()">Volvé a empezar</button>`
 }
