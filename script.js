@@ -44,7 +44,7 @@ function randomWords() {
 function addToDOM() {
   palabra = randomWords() // palabraAzar
   palabraAleatoria.innerHTML = palabra // variable global
-  timeSpan_id.innerHTML = `${segundos}seg` // segundos
+  // segundos
   score_id.innerHTML = score
 }
 addToDOM()
@@ -75,15 +75,22 @@ input.addEventListener("keyup", function (ev) {
     //i--
   }  
 })
-// manipulación del tiempo
 
+
+// manipulación del tiempo
 const probando = setInterval(function () {
   segundos--
+  timeSpan_id.innerHTML = `${segundos}seg`
 
-  //i--
+  if(segundos == 0){
+    alert('Usted perdio')
+    clearInterval(probando)
+  }
+  // i--
   // se ejecuta cada 1 segundo
 }, 1000)
 /*
+
 
 const probando = setInterval(function () {
   setInterval(function () {
