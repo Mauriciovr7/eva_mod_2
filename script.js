@@ -85,7 +85,7 @@ const timeInterval = setInterval(function () { //funcion que sirve para contar e
 function gameOver() { 
   seguir_jugando = false // para prohibir continuar jugando
   end_game_container.innerHTML = `
-  <h1>Tiempo excedido</h1>
+  <h1 class="vibrate-1">GAME OVER</h1>
   <p>puntaje final de la partida: ${score}</p>
-  <button onclick="location.reload()">Volvé a empezar</button>` //se insertan nuevas etiquetas al html para el puntaje y un boton que reinicia el juego, tambien con backstick.
+  <button class="btnReinicio" onclick="location.reload()">Volvé a empezar</button>` //se insertan nuevas etiquetas al html para el puntaje y un boton que reinicia el juego, tambien con backstick.
 }
